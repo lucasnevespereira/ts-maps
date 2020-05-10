@@ -11,4 +11,7 @@ const company = new Company();
 console.log(company);
 
 // Create instance of a CustomMap
-new CustomMap('map');
+const customMap = new CustomMap('map');
+
+customMap.addMarker(user);
+customMap.addMarker(company);
