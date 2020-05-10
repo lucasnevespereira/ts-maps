@@ -1,6 +1,16 @@
 import { User } from './User';
 import { Company } from './Company';
 
+// Instructions to every other class
+// on how they can be an argument to 'addMarker'
+// to be mappable you need this props
+interface Mappable {
+  location: {
+    lat: number;
+    lng: number;
+  };
+}
+
 export class CustomMap {
   private googleMap: google.maps.Map;
 
@@ -14,9 +24,8 @@ export class CustomMap {
     });
   }
 
-  // This way we can use arguments of type User or Company
-  // TS going to typeCheck both User and Company
-  addMarker(mappable: User | Company): void {
+  // can take any argument of type Mappable(satisfy's interface Mappable)
+  addMarker(mappable: Mappable): void {
     new google.maps.Marker({
       map: this.googleMap,
       position: {
