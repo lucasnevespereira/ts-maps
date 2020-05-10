@@ -1,8 +1,11 @@
 import faker from 'faker';
+import { Mappable } from './CustomMap';
 
 // export so we can import it in index.ts
 // quick aside: if we add a default keyword after export , we don't need {} when importing it.
-export class User {
+// implements modifier is optional but it makes sur class USER respects Mappable Type (interface)
+// implements adds additional error info x)
+export class User implements Mappable {
   name: string;
   location: {
     lat: number;
@@ -20,5 +23,13 @@ export class User {
     };
     // Quick Note: We use parseFloat because we want numbers for our lat and lng
     // and library faker as declare lng and lat as strings.
+  }
+
+  markerContent(): string {
+    return `
+    <div>
+      <h4>User Name: ${this.name}</h4>
+    </div>
+    `;
   }
 }
